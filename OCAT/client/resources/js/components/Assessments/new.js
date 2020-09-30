@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { saveAssessment } from "../shared/services/assessment.service";
 
 //React-hook-form
 function AssessmentNew() {
@@ -9,13 +10,14 @@ function AssessmentNew() {
   //handle submit data
   const onSubmit = (data) => {
     //register information passed to data. logged on console to confirm
-    console.log(data);
+    //console.log(data);
     //todo
+    saveAssessment(data);
   };
 
   //to do: form validation
 
-  /* css: bootstrap form-groups*/
+  //to do generate form dynamically from question databae
   return (
     <div>
       <h1>Cat Assessment</h1>
