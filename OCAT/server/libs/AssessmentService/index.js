@@ -32,6 +32,15 @@ app.get("/api/assessment/:id", async (req, res) => {
 
 app.post("/api/assessment", async (req, res) => {
   console.log(req.body);
+  //res.redirect("http://localhost:3000/assessment");
+  request.post(
+    { url: "http://localhost:3000/assessment", form: req.body },
+    (error, res, body) => {
+      if (!error) {
+        console.log(body);
+      }
+    }
+  );
   res.status(201).json({
     status: "success",
     data: {
