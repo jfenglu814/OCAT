@@ -5,7 +5,7 @@ import axios from "axios";
 //import api url from config.json
 //import path from api router
 //use axios to pass
-const baseURL = "http://localhost:8000/api/assessment";
+const baseURL = "http://localhost:4567/api/assessment";
 
 export const saveAssessment = async (assessment) => {
   try {
