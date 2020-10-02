@@ -1,12 +1,14 @@
-import React, { Component } from "react";
-import { useForm } from "react-hook-form";
+import React, { Component, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { saveAssessment } from "../shared/services/assessment.service";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 //React-hook-form
 function AssessmentNew() {
-  const { register, handleSubmit } = useForm();
-
+  const { register, handleSubmit, control } = useForm();
+  const [selectedDate, setselectedDate] = useState();
   //handle submit data
   const onSubmit = (data) => {
     //register information passed to data. logged on console to confirm
@@ -17,7 +19,7 @@ function AssessmentNew() {
 
   //to do: form validation
 
-  //to do generate form dynamically from question databae
+  //to do generate form dynamically from question database
   return (
     <div>
       <h1>Cat Assessment</h1>
@@ -32,6 +34,24 @@ function AssessmentNew() {
           />
         </div>
         <div className="form-group">
+          <label>Enter Birthday: </label>
+          <Controller
+            control={control}
+            name="birthday"
+            className="form-control"
+            defaultValue=""
+            render={(props) => (
+              <ReactDatePicker
+                className="input"
+                placeholderText="Select date"
+                dateFormat="mm/dd/yyyy"
+                onChange={(e) => props.onChange(e)}
+                selected={props.value}
+              />
+            )}
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="Instrument">Instrument </label>
           <input
             type="text"
@@ -41,18 +61,11 @@ function AssessmentNew() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="physicalAltercation">
+          <label htmlFor="altercations">
             Physical altercations with other cats
           </label>
-          <select
-            multiple
-            className="form-control"
-            name="altercations"
-            ref={register}
-          >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+          <select className="form-control" name="altercations" ref={register}>
+            <option>1-3</option>
             <option>4 or more</option>
           </select>
         </div>
