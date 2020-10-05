@@ -2,7 +2,8 @@ const router = require(`express`).Router();
 const express = require("express");
 const { AssessmentService } = require(`../../libs`);
 const { ErrorHandler } = require(`../../utils`);
-let request = require(`request`);
+//let request = require(`request`);
+const { postData } = require("../../libs/AssessmentService");
 
 router.get("/", async (req, res) => {
   //console.log(req);
@@ -26,17 +27,8 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   console.log(req.body);
-  //res.redirect("http://localhost:3000/assessment");
-  //move API query to libs/AssessmentServer
+  postData(req);
 
-  request.post(
-    { url: "http://localhost:3000/assessment", form: req.body },
-    (error, res, body) => {
-      if (!error) {
-        console.log(body);
-      }
-    }
-  );
   res.status(201).json({
     status: "success",
     data: {

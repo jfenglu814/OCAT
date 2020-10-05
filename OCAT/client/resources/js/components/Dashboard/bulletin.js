@@ -16,7 +16,10 @@ export class DashboardBulletin extends React.Component {
         <h1>OCAT Dashboard</h1>
         <ul>
           <li>
-            <Link to="/assessment/new">new assessment</Link>
+            <Link to="/assessment/new">New Assessment</Link>
+          </li>
+          <li>
+            <Link to="/assessment/list">Assessment List</Link>
           </li>
         </ul>
         <hr />

@@ -1,3 +1,4 @@
+-- SQL script to create table
 CREATE TABLE assessments (
   id SERIAL PRIMARY KEY,
   cat_name VARCHAR(50),
@@ -5,6 +6,6 @@ CREATE TABLE assessments (
   instrument VARCHAR(50),
   score INT,
   risk_level VARCHAR(6),
-  created_at DATE,
-  deleted_at DATE
+  created_at timestamp DEFAULT NOW(),
+  deleted_at timestamp
 );

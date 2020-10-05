@@ -1,20 +1,18 @@
 let request = require(`request`);
 const config = require(`../Config`);
 //TODO: Handle backend API requests here
-/*
-const AssessmentAPI = require("../../routes/AssessmentAPI/index");
 
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const port = 8000;
+function postData(req) {
+  request.post(
+    { url: "http://localhost:3000/assessment", form: req.body },
+    (error, res, body) => {
+      if (!error) {
+        console.log(body);
+      }
+    }
+  );
+}
 
-//middleware
-app.use(cors());
-app.use(express.json());
-app.use("/api/assessment", AssessmentAPI.router);
+function getData(req) {}
 
-app.listen(port, () => {
-  console.log(`server has started on port ${port}`);
-});
-*/
+module.exports = { postData, getData };
