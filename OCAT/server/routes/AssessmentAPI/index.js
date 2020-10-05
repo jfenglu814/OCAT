@@ -27,6 +27,8 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   console.log(req.body);
   //res.redirect("http://localhost:3000/assessment");
+  //move API query to libs/AssessmentServer
+
   request.post(
     { url: "http://localhost:3000/assessment", form: req.body },
     (error, res, body) => {

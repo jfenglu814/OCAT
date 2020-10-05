@@ -1,10 +1,7 @@
 import axios from "axios";
-//import { path } from "../../../../../../server/routes/AssessmentAPI";
-//for some reason above import statement can't find module 'fs'
 
 //import api url from config.json
-//import path from api router
-//use axios to pass
+
 const baseURL = "http://localhost:4567/api/assessment";
 
 export const saveAssessment = async (assessment) => {
@@ -19,5 +16,7 @@ export const saveAssessment = async (assessment) => {
     console.log(err);
   }
 };
+
+//todo getAssessment
 
 //export default axios.create({ baseURL: baseURL });
