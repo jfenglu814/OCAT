@@ -107,7 +107,7 @@ function AssessmentNew() {
               <ReactDatePicker
                 className="input"
                 placeholderText="Select date"
-                dateFormat="mm/dd/yyyy"
+                //dateFormat="mm/dd/yyyy"
                 onChange={(e) => props.onChange(e)}
                 selected={props.value}
               />

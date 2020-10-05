@@ -1,6 +1,8 @@
 const Assessment = require("../Database/assessment");
 const bookshelf = require("../Database/bookshelf");
 
+//TODO: update created_at, convert Date to prostgreSQL date object
+
 //assessment object
 let assessment = {};
 
@@ -69,7 +71,7 @@ async function passAssessment(data) {
 function newAssessment() {
   return Assessment.forge({
     cat_name: assessment.name,
-    //cat_date_of_birth: assessment.birthday,
+    cat_date_of_birth: assessment.birthday,
     instrument: assessment.instrument,
     score: assessment.score,
     risk_level: assessment.riskLevel,
