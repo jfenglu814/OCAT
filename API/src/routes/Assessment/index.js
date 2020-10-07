@@ -10,10 +10,9 @@ module.exports = (server) => {
   });
 
   server.post(BASE_URL, (req, res, next) => {
-    //res.send({ msg: "post" });
-    console.log("post");
+    //console.log("post");
     console.log(req.body);
-    console.log(res.json(AssessmentService.passAssessment(req.body)).body);
+    AssessmentService.passAssessment(req.body);
     next();
   });
 

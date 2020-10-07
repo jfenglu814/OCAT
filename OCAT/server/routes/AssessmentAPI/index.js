@@ -2,11 +2,9 @@ const router = require(`express`).Router();
 const express = require("express");
 const { AssessmentService } = require(`../../libs`);
 const { ErrorHandler } = require(`../../utils`);
-//let request = require(`request`);
 const { postData } = require("../../libs/AssessmentService");
 
 router.get("/", async (req, res) => {
-  //console.log(req);
   res.status(200).json({
     status: "success",
     data: {
@@ -26,9 +24,8 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   postData(req);
-
   res.status(201).json({
     status: "success",
     data: {

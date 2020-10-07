@@ -3,11 +3,11 @@
     "port": 3000
   },
   "database": {
-    "host": "localhost",
+    "host": "",
     "port": 5432,
-    "username": "postgres",
-    "password": "password",
-    "name": "risk",
+    "username": "",
+    "password": "",
+    "name": "",
     "dialect": "pg",
     "minconnections": 2
   }

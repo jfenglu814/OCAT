@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { saveAssessment } from "../shared/services/assessment.service";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,10 +15,10 @@ function AssessmentNew() {
     //console.log(data);
 
     saveAssessment(data);
+    //<Redirect to="/" />;
   };
 
-  //to do: form validation
-
+  //todo: form validation
   //todo: generate form dynamically from a question database.
   //todo: Map questions into component instead of hardcoding jsx
   return (

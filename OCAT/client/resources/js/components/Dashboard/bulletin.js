@@ -13,7 +13,9 @@ export class DashboardBulletin extends React.Component {
 
     return (
       <div>
-        <h1>OCAT Dashboard</h1>
+        <h1 className="font-weight-light display-1 text-center">
+          OCAT Dashboard
+        </h1>
         <ul>
           <li>
             <Link to="/assessment/new">New Assessment</Link>

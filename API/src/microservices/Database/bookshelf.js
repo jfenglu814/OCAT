@@ -1,13 +1,5 @@
-//const { database } = require("../../../config.example.json");
+const { config } = require(`../../utils`);
 
-const knex = require("knex")({
-  client: "pg",
-  connection: {
-    host: "localhost",
-    user: "postgres",
-    password: "password",
-    database: "risk",
-  },
-});
+const knex = require("knex")(config.database);
 
 module.exports = require("bookshelf")(knex);
