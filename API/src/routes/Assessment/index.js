@@ -4,9 +4,10 @@ const BASE_URL = `/assessment`;
 
 module.exports = (server) => {
   server.get(BASE_URL, (req, res, next) => {
-    res.send({ msg: "get" });
-    //AssessmentService
-    //ResponseHandler(req.body, {}, {});
+    console.log("get")
+    const assessments = AssessmentService.getAllAssessment();
+    res.send(assessments);
+    
   });
 
   server.post(BASE_URL, (req, res, next) => {
