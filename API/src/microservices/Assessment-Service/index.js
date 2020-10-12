@@ -75,10 +75,10 @@ function newAssessment(assessment) {
 }
 
 //get assessment data
-async function getAllAssessment() {
+async function getAllAssessments() {
   let assessments = await Assessment.fetchAll();
   console.log(assessments.toJSON());
-  return assessments;
+  return assessments.toJSON();
 }
 
-module.exports = { passAssessment, getAllAssessment };
+module.exports = { passAssessment, getAllAssessments };

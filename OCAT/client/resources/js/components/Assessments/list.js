@@ -1,6 +1,23 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
+import { getAssessments } from "../shared/services/assessment.service";
 
 const AssessmentList = () => {
+  
+  useEffect(() => {
+    async function fetchData(){
+      try{
+        const data = await getAssessments();
+        console.log("useEffect", data); 
+      } catch(err){
+        console.log(err);
+      }
+
+    }
+   fetchData();
+   // data = getAssessments();
+  //  console.log("useEffect", data);
+  }, []);
+
   return (
     <div className="list-group">
       <table className="table table-striped table-hover">
