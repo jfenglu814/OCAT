@@ -20,11 +20,11 @@ module.exports = (app, routeDirectoryPath = DEFAULT_ROUTES_DIR) => {
 
     const routeDirectories = getDirectories(routeDirectoryPath);
 
-    routeDirectories.forEach(route => {
-      const routerPath = path.resolve(`${ routeDirectoryPath }/${ route }`);
+    routeDirectories.forEach((route) => {
+      const routerPath = path.resolve(`${routeDirectoryPath}/${route}`);
       const router = require(routerPath); // eslint-disable-line
 
-      let params = [ router.path ];
+      let params = [router.path];
 
       params.push(router.router); // eslint-disable-line
 

@@ -1,4 +1,17 @@
 import axios from "axios";
 
-export class AssessmentService {
-}
+//import api url from config.json
+
+const baseURL = "http://localhost:4567/api/assessment";
+
+export const saveAssessment = async (assessment) => {
+  try {
+    console.log(assessment);
+    const response = await axios.post(baseURL, assessment);
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//todo getAssessment
