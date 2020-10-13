@@ -1,4 +1,17 @@
 import axios from "axios";
+import React, {useState, createContext} from "react";
+
+export const AssessmentsContext = createContext();
+
+export const AssessmentsContextProvider = (props) =>{
+  const [assessments, setAssessments] = useState([]);
+
+  return(
+    <AssessmentsContext.Provider value={{assessments, setAssessments}}>
+      {props.children}
+    </AssessmentsContext.Provider>
+  )
+}
 
 //import api url from config.json
 

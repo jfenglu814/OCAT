@@ -4,9 +4,11 @@ import { DashboardBulletin } from "../components/Dashboard/bulletin";
 import AssessmentNew from "../components/Assessments/new";
 import AssessmentList from "../components/Assessments/list";
 import NavBar from "../components/Dashboard/navbar";
+import { AssessmentsContextProvider } from "../components/shared/services/assessment.service";
 
 export function App() {
   return (
+    <AssessmentsContextProvider>
     <div>
       <NavBar />
       <main className="container">
@@ -18,5 +20,7 @@ export function App() {
         </Switch>
       </main>
     </div>
+    </AssessmentsContextProvider>
+    
   );
 }
