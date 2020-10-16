@@ -77,7 +77,6 @@ function newAssessment(assessment) {
 //get assessment data
 async function getAllAssessments() {
   let assessments = await Assessment.fetchAll();
-  console.log(assessments.toJSON());
   return assessments.toJSON();
 }
 

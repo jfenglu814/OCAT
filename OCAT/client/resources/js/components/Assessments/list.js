@@ -3,21 +3,20 @@ import React, { Component, useContext, useEffect } from "react";
 import { AssessmentsContextProvider, getAssessments, AssessmentsContext } from "../shared/services/assessment.service";
 
 const AssessmentList = (props) => {
+  //assessment context
   const {assessments, setAssessments} = useContext(AssessmentsContext);
+  
+  //get data on render
   useEffect(() => {
     async function fetchData(){
       try{
         const data = await getAssessments();
-        console.log("useEffect", data); 
         setAssessments(data);
       } catch(err){
         console.log(err);
       }
-
     }
    fetchData();
-   // data = getAssessments();
-  //  console.log("useEffect", data);
   }, []);
 
   return (

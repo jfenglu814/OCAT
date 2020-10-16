@@ -4,7 +4,7 @@ const config = require(`../Config`);
 const baseURL = config.api.url + "/assessment";
 //TODO: Handle backend API requests here
 
-function postData(req) {
+function postAssessment(req) {
   request.post(
     { url: "http://localhost:3000/assessment", form: req.body },
     (error, res, body) => {
@@ -15,11 +15,9 @@ function postData(req) {
   );
 }
 
-async function getData() {
+async function getAssessmentList() {
   try {
-    console.log("getData() called");
     const response = await axios.get("http://localhost:3000/assessment");
-    console.log(response.data);
     return response.data;
   
   } catch (err) {
@@ -28,4 +26,4 @@ async function getData() {
   
 };
 
-module.exports = { postData, getData };
+module.exports = { postAssessment, getAssessmentList};

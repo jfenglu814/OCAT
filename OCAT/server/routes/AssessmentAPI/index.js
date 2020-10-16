@@ -2,24 +2,17 @@ const router = require(`express`).Router();
 const express = require("express");
 const { AssessmentService } = require(`../../libs`);
 const { ErrorHandler } = require(`../../utils`);
-const { postData, getData } = require("../../libs/AssessmentService");
+const { postAssessment ,getAssessmentList } = require("../../libs/AssessmentService");
 
 router.get("/", async (req, res) => {
-  response = await getData();
+  response = await getAssessmentList();
   
-  console.log("get called", response);
-  /*res.status(201).json({
-    status: "success",
-    data: {
-      cats: response,
-    },
-  });*/
   res.send(response);
 });
 
 router.post("/", async (req, res) => {
   //console.log(req.body);
-  postData(req);
+  postAssessment(req);
   res.status(201).json({
     status: "success",
     data: {
@@ -37,7 +30,7 @@ router.get("/:id", async (req, res) => {
     },
   });
 });
-
+/*
 router.put("/:id", async (req, res) => {
   console.log(req.params.id);
   console.log(req.body);
@@ -48,7 +41,7 @@ router.put("/:id", async (req, res) => {
     },
   });
 });
-
+*/
 router.delete("/:id", async (req, res) => {
   console.log(req.params.id);
   console.log(req.body);

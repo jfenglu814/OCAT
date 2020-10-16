@@ -1,4 +1,4 @@
--- SQL script to create table
+-- SQL script to create assessment table
 CREATE TABLE assessments (
   id SERIAL PRIMARY KEY,
   cat_name VARCHAR(50),
@@ -8,4 +8,14 @@ CREATE TABLE assessments (
   risk_level VARCHAR(6),
   created_at timestamp DEFAULT NOW(),
   deleted_at timestamp
+);
+
+-- SQL script to create user table
+CREATE TABLE users (
+  id BIGSERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(200) NOT NULL,
+  email VARCHAR(200) NOT NULL,
+  password VARCHAR(200) NOT NULL,
+  created_at timestamp DEFAULT NOW(),
+  UNIQUE (email)
 );

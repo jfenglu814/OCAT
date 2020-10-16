@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, {useState, createContext} from "react";
 
+//provides context data for the webapp.
 export const AssessmentsContext = createContext();
 
 export const AssessmentsContextProvider = (props) =>{
@@ -13,28 +14,22 @@ export const AssessmentsContextProvider = (props) =>{
   )
 }
 
-//import api url from config.json
-
+//TODO: import api url from config.json
 const baseURL = "http://localhost:4567/api/assessment";
 
+//http post request to post assessment
 export const saveAssessment = async (assessment) => {
-  console.log(assessment);
   try {
-    console.log(assessment);
     const response = await axios.post(baseURL, assessment);
-    console.log(response);
   } catch (err) {
     console.log(err);
   }
 };
 
+//http get request to get assessment
 export const getAssessments = async() => {
-  console.log("getAssessments called");
-  
   try {
-    //console.log(assessment);
     const response = await axios.get(baseURL);
-    console.log("getAssessments called", response.data);
     return response.data;
     
   } catch (err) {
@@ -42,4 +37,4 @@ export const getAssessments = async() => {
   }
 };
 
-//todo getAssessment
+

@@ -11,11 +11,8 @@ function AssessmentNew() {
   const [selectedDate, setselectedDate] = useState();
   //handle submit data
   const onSubmit = (data) => {
-    //register information passed to data. logged on console to confirm
-    //console.log(data);
-
     saveAssessment(data);
-    //<Redirect to="/" />;
+    //TODO: <Redirect to="/" />;
   };
 
   //todo: form validation

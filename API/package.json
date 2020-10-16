@@ -10,9 +10,12 @@
   "license": "UNLICENSED",
   "dependencies": {
     "app-root-path": "^2.2.1",
+    "bcrypt": "^5.0.0",
     "bookshelf": "^1.2.0",
+    "dotenv": "^8.2.0",
     "dtrace-provider": "^0.8.7",
     "find": "^0.3.0",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.6",
     "lodash": "^4.17.11",
     "moment": "^2.23.0",
