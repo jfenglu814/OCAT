@@ -17,7 +17,7 @@ new ErrorHandler(server);
 const cors = corsMiddleware({
   preflightMaxAge: 5,
   origins: [ `*` ],
-  allowHeaders: [ `ims-application` ],
+  allowHeaders: ['token'],
   exposeHeaders: []
 });
 

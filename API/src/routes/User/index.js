@@ -13,6 +13,8 @@ module.exports = server => {
     server.post(REG_URL, async (req, res, next) => {
         try{
             const {name, email, password} = req.body;
+            //console.log(req.body);
+            console.log(email);
 
             //check if user exists
             const user = await IdentityService.returnUser(email);
