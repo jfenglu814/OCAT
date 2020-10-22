@@ -2,6 +2,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 const Login = ({setAuth})=> {
   const { register, handleSubmit, control } = useForm();
@@ -16,9 +17,11 @@ const Login = ({setAuth})=> {
         //store the token in the browser. If authentication passes back token, set Auth to true
         if (response.data.token){
             localStorage.setItem("token", response.data.token);
+            toast.success("Logged in Successfully");
             setAuth(true);
         }else{
-            setAuth(false);
+            toast.error(response.data);
+            setAuth(false); 
         }
         
       } catch (err) {

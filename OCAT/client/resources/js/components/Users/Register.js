@@ -2,9 +2,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-//import { sendUser } from "../../../../../server/libs/UserService";
-
-//import registerUser from "../../../../../server/libs/UserService/index";
+import { toast } from "react-toastify";
 
 const Register = ({setAuth})=> {
   const { register, handleSubmit, control } = useForm();
@@ -18,9 +16,16 @@ const Register = ({setAuth})=> {
         const response = await axios.post(baseURL, data);
         
         //store the registered user's token in localstorage
-        //Toke stored successfully, can set Auth to true
-        localStorage.setItem("token", response.data.token);
-        setAuth(true);
+        //if Token stored successfully, can set Auth to true
+        if (response.data.token){
+          localStorage.setItem("token", response.data.token);
+          toast.success("Registered Successfully");
+          setAuth(true);
+        } else{
+          toast.error(response.data)
+          setAuth(false);
+        }
+       
       } catch (err) {
         console.log(err);
       }

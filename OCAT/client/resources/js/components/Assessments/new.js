@@ -4,15 +4,20 @@ import { Link, Redirect } from "react-router-dom";
 import { saveAssessment } from "../shared/services/assessment.service";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 //React-hook-form
 function AssessmentNew() {
   const { register, handleSubmit, control } = useForm();
-  const [selectedDate, setselectedDate] = useState();
+  const history = useHistory()
+  //const [selectedDate, setselectedDate] = useState();
   //handle submit data
   const onSubmit = (data) => {
     saveAssessment(data);
-    //TODO: <Redirect to="/" />;
+    toast.success("Form Submited");
+    //Go back to previous page
+    history.goBack();
   };
 
   //todo: form validation

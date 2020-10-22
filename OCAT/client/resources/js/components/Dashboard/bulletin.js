@@ -1,10 +1,12 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const DashboardBulletin = ({setAuth}) => {
   const logout = async e => {
     e.preventDefault();
     try {
+      toast.success("Logged out Successfully");
       localStorage.removeItem("token");
       setAuth(false);
     } catch (err) {

@@ -8,10 +8,17 @@ import Register from "../components/Users/Register"
 import NavBar from "../components/Dashboard/navbar";
 import { AssessmentsContextProvider } from "../components/shared/services/assessment.service";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function App() {
   //authentication check to reroute pages depending if logged in
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  toast.configure({
+    autoClose: 4000,
+    hideProgressBar: true,
+  });
 
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
