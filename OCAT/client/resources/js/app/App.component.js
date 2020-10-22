@@ -10,13 +10,14 @@ import { AssessmentsContextProvider } from "../components/shared/services/assess
 import axios from 'axios';
 
 export function App() {
-  //authentication routes
+  //authentication check to reroute pages depending if logged in
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
   };
 
+  //On page reload
   useEffect(() => {
     isAuth();
   })
@@ -24,13 +25,14 @@ export function App() {
   //Checks authentication on page refresh
   async function isAuth(){
     try{
+      //Checks if token is valid with backend
       const response = await axios.get("http://localhost:3000/user/is-verify", {
         headers: {
           token: localStorage.token
         }
       });
-      console.log(response.data);
-
+      
+      //if token is valid, authentication is true or else it's false
       response.data === true ? setIsAuthenticated(true): setIsAuthenticated(false);
     }catch(err){
       console.error(err.message);

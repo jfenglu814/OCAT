@@ -26,7 +26,7 @@ const DashboardBulletin = ({setAuth}) => {
         </li>
       </ul>
       <hr />
-      <button onClick ={e => logout(e)}>Logout</button>
+      <button className="btn btn-danger" onClick ={e => logout(e)}>Logout</button>
     </div>
   );
 }

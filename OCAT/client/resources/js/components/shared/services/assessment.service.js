@@ -15,7 +15,7 @@ export const AssessmentsContextProvider = (props) =>{
 }
 
 //TODO: import api url from config.json
-const baseURL = "http://localhost:4567/api/assessment";
+const baseURL = "http://localhost:4567/api/assessment/";
 
 //http post request to post assessment
 export const saveAssessment = async (assessment) => {
@@ -30,6 +30,17 @@ export const saveAssessment = async (assessment) => {
 export const getAssessments = async() => {
   try {
     const response = await axios.get(baseURL);
+    console.log(response.data);
+    return response.data;
+    
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteAssessment = async(id) => {
+  try {
+    const response = await axios.delete(baseURL + id);
     return response.data;
     
   } catch (err) {

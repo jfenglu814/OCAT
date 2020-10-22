@@ -1,7 +1,7 @@
 -- SQL script to create assessment table
 CREATE TABLE assessments (
-  id SERIAL PRIMARY KEY,
-  cat_name VARCHAR(50),
+  id BIGSERIAL PRIMARY KEY NOT NULL,
+  cat_name VARCHAR(50) ,
   cat_date_of_birth DATE,
   instrument VARCHAR(50),
   score INT,

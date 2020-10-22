@@ -13,9 +13,7 @@ module.exports = server => {
     server.post(REG_URL, async (req, res, next) => {
         try{
             const {name, email, password} = req.body;
-            //console.log(req.body);
-            console.log(email);
-
+            
             //check if user exists
             const user = await IdentityService.returnUser(email);
             if (user != undefined)
@@ -27,11 +25,9 @@ module.exports = server => {
             const saltRound = 10;
             const salt = await bcrypt.genSalt(saltRound);
             const bcryptPassword = await bcrypt.hash(password, salt);
-            console.log(bcryptPassword);
             
             //enter User to database
             const newUser = await IdentityService.registerUser(name, email, bcryptPassword)
-            console.log(newUser.attributes);
 
             //generate jwt token
             const token = jwtGenerator(newUser.attributes.id)
@@ -72,14 +68,13 @@ module.exports = server => {
         next();
     });
 
-    //verify jwt token
+    //verify jwt token. Passes through authorization middleware
     server.get('/user/is-verify',  authorization, async (req, res, next) => {
         try{
-            console.log("is-verify");
             res.send(true);
 
         }catch(err){
-            //console.log(err);
+            console.log(err);
         }
         next();
     });

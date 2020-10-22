@@ -6,7 +6,6 @@ import axios from 'axios';
 
 //import registerUser from "../../../../../server/libs/UserService/index";
 
-
 const Register = ({setAuth})=> {
   const { register, handleSubmit, control } = useForm();
   
@@ -15,11 +14,11 @@ const Register = ({setAuth})=> {
   const onSubmit =  async(data) => {
     console.log(data);
     try {
-        
+        //Post register information to backend server
         const response = await axios.post(baseURL, data);
         
-        console.log(response.data);
-        //store the token in the browser
+        //store the registered user's token in localstorage
+        //Toke stored successfully, can set Auth to true
         localStorage.setItem("token", response.data.token);
         setAuth(true);
       } catch (err) {

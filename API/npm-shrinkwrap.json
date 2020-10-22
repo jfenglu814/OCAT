@@ -368,6 +368,11 @@
         "lodash": "^4.17.15"
       }
     },
+    "bookshelf-soft-delete": {
+      "version": "5.0.0",
+      "resolved": "https://registry.npmjs.org/bookshelf-soft-delete/-/bookshelf-soft-delete-5.0.0.tgz",
+      "integrity": "sha512-255xcCcRtQiQhErBlsXwBMdqNF+180cTzCdr04/JhcFmA2wMnQHZ9Ur/NkpBPxi2ZJwo8aRimJiY9w8+1HFBtQ=="
+    },
     "boxen": {
       "version": "4.2.0",
       "resolved": "https://registry.npmjs.org/boxen/-/boxen-4.2.0.tgz",

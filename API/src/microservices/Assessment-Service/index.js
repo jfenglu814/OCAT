@@ -54,7 +54,7 @@ function calculateRiskLevel(assessmentData) {
 async function passAssessment(data) {
   //calculates risk score and assessment
   const assessment = prepareData(data);
-  console.log("Microservices DATA", assessment);
+  //console.log("Microservices DATA", assessment);
 
   //sends data into database
   savedAssessment = await newAssessment(assessment);
@@ -80,4 +80,16 @@ async function getAllAssessments() {
   return assessments.toJSON();
 }
 
-module.exports = { passAssessment, getAllAssessments };
+async function deleteAssessment(id){
+  //creates timestamp of deletion
+  const time = new Date().toISOString();
+
+  //updates database
+  assessment = await Assessment.forge({
+    id: id,
+    deleted_at: time,
+  }, "update").save();
+  
+}
+
+module.exports = { passAssessment, getAllAssessments, deleteAssessment };

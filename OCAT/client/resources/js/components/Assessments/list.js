@@ -1,6 +1,6 @@
 import { element } from "prop-types";
 import React, { Component, useContext, useEffect } from "react";
-import { AssessmentsContextProvider, getAssessments, AssessmentsContext } from "../shared/services/assessment.service";
+import { getAssessments, deleteAssessment, AssessmentsContext } from "../shared/services/assessment.service";
 
 const AssessmentList = (props) => {
   //assessment context
@@ -18,6 +18,19 @@ const AssessmentList = (props) => {
     }
    fetchData();
   }, []);
+
+  //Delete onclick of delete button
+  const handleDelete = (id) => {
+    try{
+      deleteAssessment(id);
+
+      //resets assessment state
+      setAssessments(
+        assessments.filter((assessment) => assessment.id !== id));
+    }catch (err){
+      console.log(err);
+    }
+  };
 
   return (
     <div className="list-group">
@@ -44,7 +57,7 @@ const AssessmentList = (props) => {
                 <td>{assessment.risk_level}</td>
                <td>{assessment.created_at}</td>
                <td>
-               <button className="btn btn-danger">Delete</button>
+               <button onClick={() => handleDelete(assessment.id)} className="btn btn-danger">Delete</button>
                </td>
               </tr>
               ); 

@@ -10,12 +10,12 @@ module.exports = (server) => {
   });
 
   server.post(BASE_URL, (req, res, next) => {
-    //console.log(req.body);
     AssessmentService.passAssessment(req.body);
     next();
   });
 
-  server.del(BASE_URL, (req, res, next) => {
+  server.del(BASE_URL + "/:id", async (req, res, next) => {
+    await AssessmentService.deleteAssessment(req.params.id);
     res.send({ msg: "delete" });
     next();
   });
