@@ -43,7 +43,7 @@ const Register = ({setAuth})=> {
             name="name"
             ref={register({required: true})}
           />
-         { errors.name &&  <small class="form-text text-danger">Name is Required.</small> }
+         { errors.name &&  <small className="form-text text-danger">Name is Required.</small> }
         </div>
         <div className="form-group">
           <label htmlFor="email">Enter Email: </label>
@@ -53,7 +53,7 @@ const Register = ({setAuth})=> {
             name="email"
             ref={register({required: true})}
           />
-          { errors.email &&  <small class="form-text text-danger">Email is Required.</small> }
+          { errors.email &&  <small className="form-text text-danger">Email is Required.</small> }
         </div>
         <div className="form-group">
           <label htmlFor="password">Enter Password: </label>
@@ -61,22 +61,32 @@ const Register = ({setAuth})=> {
             type="password"
             className="form-control"
             name="password"
-            ref={register({required: true})}
+            ref={register({
+              required: "You must specify a password",
+              minLength: {
+                value: 5,
+                message: "Password must have at least 5 characters"
+              }
+            })}
           />
-          { errors.password &&  <small class="form-text text-danger">Name is Required.</small>}
+          { errors.password &&  <small className="form-text text-danger">{errors.password.message}</small>}
         </div>
         <div className="form-group">
           <label htmlFor="email">Confirm Password: </label>
           <input
             type="password"
             className="form-control"
-            name="confirm Password"
+            name="password_repeat"
             onChange={e => {
               const value = e.target.value
               if (value !== getValues('password')) return <p>Passwords don't match</p>
           }}
-            //ref={register}
+            ref={register({
+              validate: value =>
+                value === getValues('password') || "The passwords do not match"
+            })}
           />
+          {errors.password_repeat && <small className ="form-text text-danger">{errors.password_repeat.message}</small>}
         </div>
         <button type="submit" className="btn btn-primary">
           Submit

@@ -41,7 +41,7 @@ const Login = ({setAuth})=> {
             name="email"
             ref={register({required: true})}
           />
-        { errors.email &&  <p>required</p> }
+        { errors.email &&  <small className="form-text text-danger">Email is Required.</small> }
         </div>
         <div className="form-group">
           <label htmlFor="password">Enter Password: </label>
@@ -49,8 +49,9 @@ const Login = ({setAuth})=> {
             type="password"
             className="form-control"
             name="password"
-            ref={register}
+            ref={register({required: true})}
           />
+          { errors.password &&  <small className="form-text text-danger">Password is Required.</small> }
         </div>
         <button type="submit" className="btn btn-primary">
           Submit

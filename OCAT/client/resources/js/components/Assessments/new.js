@@ -36,7 +36,7 @@ function AssessmentNew() {
             name="name"
             ref={register({required: true})}
           />
-          { errors.name &&  <small class="form-text text-danger">Name is Required.</small>}
+          { errors.name &&  <small className="form-text text-danger">Name is Required.</small>}
         </div>
         <div className="form-group">
           <label htmlFor="Instrument">Instrument </label>
@@ -46,7 +46,7 @@ function AssessmentNew() {
             name="instrument"
             ref={register({required: true})}
           />
-          { errors.instrument &&  <small class="form-text text-danger">Instrument is Required</small>}
+          { errors.instrument &&  <small className="form-text text-danger">Instrument is Required</small>}
         </div>
         <div className="form-group">
           <label htmlFor="altercations">
