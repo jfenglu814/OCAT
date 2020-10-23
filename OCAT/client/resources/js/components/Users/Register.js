@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 
 const Register = ({setAuth})=> {
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, errors, getValues } = useForm();
   
   //handle submit data
   const baseURL = "http://localhost:3000/user/register";
@@ -41,8 +41,9 @@ const Register = ({setAuth})=> {
             type="text"
             className="form-control"
             name="name"
-            ref={register}
+            ref={register({required: true})}
           />
+         { errors.name &&  <small class="form-text text-danger">Name is Required.</small> }
         </div>
         <div className="form-group">
           <label htmlFor="email">Enter Email: </label>
@@ -50,8 +51,9 @@ const Register = ({setAuth})=> {
             type="email"
             className="form-control"
             name="email"
-            ref={register}
+            ref={register({required: true})}
           />
+          { errors.email &&  <small class="form-text text-danger">Email is Required.</small> }
         </div>
         <div className="form-group">
           <label htmlFor="password">Enter Password: </label>
@@ -59,8 +61,9 @@ const Register = ({setAuth})=> {
             type="password"
             className="form-control"
             name="password"
-            ref={register}
+            ref={register({required: true})}
           />
+          { errors.password &&  <small class="form-text text-danger">Name is Required.</small>}
         </div>
         <div className="form-group">
           <label htmlFor="email">Confirm Password: </label>
@@ -68,6 +71,10 @@ const Register = ({setAuth})=> {
             type="password"
             className="form-control"
             name="confirm Password"
+            onChange={e => {
+              const value = e.target.value
+              if (value !== getValues('password')) return <p>Passwords don't match</p>
+          }}
             //ref={register}
           />
         </div>

@@ -13,7 +13,7 @@ async function returnUser(email){
     const user = await User.where({'email': email}).fetch({require:false});
     return user.toJSON();
   } catch(err){
-    //console.log(err)
+    console.log(err)
   }
 
   

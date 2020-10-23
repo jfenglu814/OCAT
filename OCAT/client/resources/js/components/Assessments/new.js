@@ -9,7 +9,9 @@ import { toast } from "react-toastify";
 
 //React-hook-form
 function AssessmentNew() {
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, errors, control } = useForm({
+    mode: 'onBlur',
+  });
   const history = useHistory()
   //const [selectedDate, setselectedDate] = useState();
   //handle submit data
@@ -20,7 +22,6 @@ function AssessmentNew() {
     history.goBack();
   };
 
-  //todo: form validation
   //todo: generate form dynamically from a question database.
   //todo: Map questions into component instead of hardcoding jsx
   return (
@@ -33,8 +34,9 @@ function AssessmentNew() {
             type="text"
             className="form-control"
             name="name"
-            ref={register}
+            ref={register({required: true})}
           />
+          { errors.name &&  <small class="form-text text-danger">Name is Required.</small>}
         </div>
         <div className="form-group">
           <label htmlFor="Instrument">Instrument </label>
@@ -42,8 +44,9 @@ function AssessmentNew() {
             type="text"
             className="form-control"
             name="instrument"
-            ref={register}
+            ref={register({required: true})}
           />
+          { errors.instrument &&  <small class="form-text text-danger">Instrument is Required</small>}
         </div>
         <div className="form-group">
           <label htmlFor="altercations">
@@ -109,7 +112,6 @@ function AssessmentNew() {
               <ReactDatePicker
                 className="input"
                 placeholderText="Select date"
-                //dateFormat="mm/dd/yyyy"
                 onChange={(e) => props.onChange(e)}
                 selected={props.value}
               />

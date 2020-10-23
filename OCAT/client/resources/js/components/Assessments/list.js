@@ -24,7 +24,7 @@ const AssessmentList = (props) => {
     try{
       deleteAssessment(id);
 
-      //resets assessment state
+      //resets assessment state to remove the deleted member
       setAssessments(
         assessments.filter((assessment) => assessment.id !== id));
     }catch (err){

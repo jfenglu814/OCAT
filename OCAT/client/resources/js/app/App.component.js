@@ -1,5 +1,5 @@
 import React, {useState, useEffect}from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import {  Route, Switch, Redirect } from "react-router-dom";
 import DashboardBulletin  from "../components/Dashboard/bulletin";
 import AssessmentNew from "../components/Assessments/new";
 import AssessmentList from "../components/Assessments/list";
@@ -47,11 +47,12 @@ export function App() {
   }
 
   return (
-    <AssessmentsContextProvider>
+    
     <div>
       <NavBar isAuthenticated={isAuthenticated}/>
       <main className="container">
         {/* Switch for routes */}
+        <AssessmentsContextProvider>
         <Switch>
           <Route path="/assessment/new" render={props => isAuthenticated ? <AssessmentNew {...props}/> : <Redirect to="/login"/> } />
           <Route path="/assessment/list" render={props => isAuthenticated ? <AssessmentList {...props}/> : <Redirect to="/login"/> }/>
@@ -59,9 +60,10 @@ export function App() {
           <Route path="/register" render={props => !isAuthenticated ? <Register {...props} setAuth={setAuth}/> : <Redirect to="/"/> }/>
           <Route path="/" render={props => isAuthenticated ? <DashboardBulletin {...props} setAuth={setAuth}/> : <Redirect to="/login"/> }/>
         </Switch>
+        </AssessmentsContextProvider>
       </main>
     </div>
-    </AssessmentsContextProvider>
+    
     
   );
 }

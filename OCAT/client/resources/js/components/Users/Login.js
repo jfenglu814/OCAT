@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 
 const Login = ({setAuth})=> {
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   
   //handle submit data
   const baseURL = "http://localhost:3000/user/";
@@ -39,8 +39,9 @@ const Login = ({setAuth})=> {
             type="email"
             className="form-control"
             name="email"
-            ref={register}
+            ref={register({required: true})}
           />
+        { errors.email &&  <p>required</p> }
         </div>
         <div className="form-group">
           <label htmlFor="password">Enter Password: </label>
