@@ -28,6 +28,7 @@ function calculateScore(assessmentData) {
     playWellDogs,
     hissesStrangers,
   } = assessmentData;
+  //Add up each individual element to calculate score
   const score =
     altercations +
     previousContact +
@@ -54,11 +55,9 @@ function calculateRiskLevel(assessmentData) {
 async function passAssessment(data) {
   //calculates risk score and assessment
   const assessment = prepareData(data);
-  console.log("Microservices DATA", assessment);
 
   //sends data into database
   savedAssessment = await newAssessment(assessment);
-  console.log(savedAssessment);
 
   return savedAssessment;
 }
@@ -75,6 +74,21 @@ function newAssessment(assessment) {
 }
 
 //get assessment data
-function getAllAssessment(data) {}
+async function getAllAssessments() {
+  let assessments = await Assessment.fetchAll();
+  return assessments.toJSON();
+}
 
-module.exports = { passAssessment, getAllAssessment };
+async function deleteAssessment(id){
+  //creates timestamp of deletion
+  const time = new Date().toISOString();
+
+  //updates database
+  assessment = await Assessment.forge({
+    id: id,
+    deleted_at: time,
+  }, "update").save();
+  
+}
+
+module.exports = { passAssessment, getAllAssessments, deleteAssessment };

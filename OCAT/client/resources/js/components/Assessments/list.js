@@ -1,6 +1,36 @@
-import React, { Component } from "react";
+import React, { useContext, useEffect } from "react";
+import { getAssessments, deleteAssessment, AssessmentsContext } from "../shared/services/assessment.service";
 
-const AssessmentList = () => {
+const AssessmentList = (props) => {
+  //assessment context
+  const {assessments, setAssessments} = useContext(AssessmentsContext);
+  
+  //get data on page render
+  useEffect(() => {
+    async function fetchData(){
+      try{
+        const data = await getAssessments();
+        setAssessments(data);
+      } catch(err){
+        console.log(err);
+      }
+    }
+   fetchData();
+  }, []);
+
+  //Delete onclick of delete button
+  const handleDelete = (id) => {
+    try{
+      deleteAssessment(id);
+
+      //resets assessment state to remove the deleted member
+      setAssessments(
+        assessments.filter((assessment) => assessment.id !== id));
+    }catch (err){
+      console.log(err);
+    }
+  };
+
   return (
     <div className="list-group">
       <table className="table table-striped table-hover">
@@ -16,17 +46,22 @@ const AssessmentList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Jeff</td>
-            <td>03/12/1989</td>
-            <td>Piano</td>
-            <td>5</td>
-            <td>high</td>
-            <td></td>
-            <td>
-              <button className="btn btn-danger">Delete</button>
-            </td>
-          </tr>
+          {assessments && assessments.map(assessment => {
+              return(
+                <tr key={assessment.id}>
+                 <td>{assessment.cat_name}</td>
+                 <td>{assessment.cat_date_of_birth}</td>
+                <td>{assessment.instrument}</td>
+                <td>{assessment.score}</td>
+                <td>{assessment.risk_level}</td>
+               <td>{assessment.created_at}</td>
+               <td>
+               <button onClick={() => handleDelete(assessment.id)} className="btn btn-danger">Delete</button>
+               </td>
+              </tr>
+              ); 
+            })
+          }
         </tbody>
       </table>
     </div>

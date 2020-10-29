@@ -3,20 +3,22 @@ const { ResponseHandler } = require(`../../utils`);
 const BASE_URL = `/assessment`;
 
 module.exports = (server) => {
-  server.get(BASE_URL, (req, res, next) => {
-    res.send({ msg: "get" });
-    //AssessmentService
-    //ResponseHandler(req.body, {}, {});
+  //get assessment route
+  server.get(BASE_URL, async (req, res, next) => {
+    const assessments = await AssessmentService.getAllAssessments();
+    res.send(assessments);
+    next();
   });
 
+  //post assessment route
   server.post(BASE_URL, (req, res, next) => {
-    //console.log("post");
-    console.log(req.body);
     AssessmentService.passAssessment(req.body);
     next();
   });
 
-  server.del(BASE_URL, (req, res, next) => {
+  //delete assessment route
+  server.del(BASE_URL + "/:id", async (req, res, next) => {
+    await AssessmentService.deleteAssessment(req.params.id);
     res.send({ msg: "delete" });
     next();
   });

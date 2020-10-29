@@ -1,17 +1,48 @@
 import axios from "axios";
+import React, {useState, createContext, useEffect} from "react";
 
-//import api url from config.json
+//provides context data for the webapp.
+export const AssessmentsContext = createContext();
 
-const baseURL = "http://localhost:4567/api/assessment";
+export const AssessmentsContextProvider = (props) =>{
+  const [assessments, setAssessments] = useState([]);
 
+  return(
+    <AssessmentsContext.Provider value={{assessments, setAssessments}}>
+      {props.children}
+    </AssessmentsContext.Provider>
+  )
+}
+
+const baseURL = "http://localhost:4567/api/assessment/";
+
+//http post request to post assessment
 export const saveAssessment = async (assessment) => {
   try {
-    console.log(assessment);
     const response = await axios.post(baseURL, assessment);
-    console.log(response);
   } catch (err) {
     console.log(err);
   }
 };
 
-//todo getAssessment
+//http get request to get assessment
+export const getAssessments = async() => {
+  try {
+    const response = await axios.get(baseURL);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//http request to delete assessment
+export const deleteAssessment = async(id) => {
+  try {
+    const response = await axios.delete(baseURL + id);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+

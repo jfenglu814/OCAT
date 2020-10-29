@@ -1,8 +1,10 @@
 let request = require(`request`);
+let axios = require('axios');
 const config = require(`../Config`);
-//TODO: Handle backend API requests here
+const baseURL = config.api.url + "/assessment";
 
-function postData(req) {
+//post assessment data
+function postAssessment(req) {
   request.post(
     { url: "http://localhost:3000/assessment", form: req.body },
     (error, res, body) => {
@@ -13,6 +15,25 @@ function postData(req) {
   );
 }
 
-function getData(req) {}
+//get assessment data
+async function getAssessmentList() {
+  try {
+    const response = await axios.get("http://localhost:3000/assessment");
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  } 
+};
 
-module.exports = { postData, getData };
+//soft delete assessment data
+async function deleteAssessment(id) {
+  try {
+    const response = await axios.delete("http://localhost:3000/assessment/" + id);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+  
+};
+
+module.exports = { postAssessment, getAssessmentList, deleteAssessment};

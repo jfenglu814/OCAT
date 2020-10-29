@@ -4,5 +4,5 @@ public/js
 public/css
 
 config.json
-
+.env
 .DS_Store

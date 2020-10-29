@@ -1,25 +1,29 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Link, Redirect } from "react-router-dom";
 import { saveAssessment } from "../shared/services/assessment.service";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
-//React-hook-form
 function AssessmentNew() {
-  const { register, handleSubmit, control } = useForm();
-  const [selectedDate, setselectedDate] = useState();
+  //react hook form
+  const { register, handleSubmit, errors, control } = useForm({
+    mode: 'onBlur',
+  });
+
+  const history = useHistory()
+
   //handle submit data
   const onSubmit = (data) => {
-    //register information passed to data. logged on console to confirm
-    //console.log(data);
-
     saveAssessment(data);
-    //<Redirect to="/" />;
+    toast.success("Form Submited");
+
+    //Go back to dashboard 
+    history.push('/');
   };
 
-  //todo: form validation
-  //todo: generate form dynamically from a question database.
+  //todo: Generate form dynamically from a question database.
   //todo: Map questions into component instead of hardcoding jsx
   return (
     <div>
@@ -31,8 +35,9 @@ function AssessmentNew() {
             type="text"
             className="form-control"
             name="name"
-            ref={register}
+            ref={register({required: true})}
           />
+          { errors.name &&  <small className="form-text text-danger">Name is Required.</small>}
         </div>
         <div className="form-group">
           <label htmlFor="Instrument">Instrument </label>
@@ -40,8 +45,9 @@ function AssessmentNew() {
             type="text"
             className="form-control"
             name="instrument"
-            ref={register}
+            ref={register({required: true})}
           />
+          { errors.instrument &&  <small className="form-text text-danger">Instrument is Required</small>}
         </div>
         <div className="form-group">
           <label htmlFor="altercations">
@@ -107,7 +113,6 @@ function AssessmentNew() {
               <ReactDatePicker
                 className="input"
                 placeholderText="Select date"
-                //dateFormat="mm/dd/yyyy"
                 onChange={(e) => props.onChange(e)}
                 selected={props.value}
               />
