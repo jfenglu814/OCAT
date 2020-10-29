@@ -28,6 +28,7 @@ function calculateScore(assessmentData) {
     playWellDogs,
     hissesStrangers,
   } = assessmentData;
+  //Add up each individual element to calculate score
   const score =
     altercations +
     previousContact +
@@ -54,11 +55,9 @@ function calculateRiskLevel(assessmentData) {
 async function passAssessment(data) {
   //calculates risk score and assessment
   const assessment = prepareData(data);
-  //console.log("Microservices DATA", assessment);
 
   //sends data into database
   savedAssessment = await newAssessment(assessment);
-  console.log(savedAssessment);
 
   return savedAssessment;
 }

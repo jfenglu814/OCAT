@@ -1,12 +1,11 @@
-import { element } from "prop-types";
-import React, { Component, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { getAssessments, deleteAssessment, AssessmentsContext } from "../shared/services/assessment.service";
 
 const AssessmentList = (props) => {
   //assessment context
   const {assessments, setAssessments} = useContext(AssessmentsContext);
   
-  //get data on render
+  //get data on page render
   useEffect(() => {
     async function fetchData(){
       try{

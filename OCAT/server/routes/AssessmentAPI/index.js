@@ -1,5 +1,4 @@
 const router = require(`express`).Router();
-const express = require("express");
 const { AssessmentService } = require(`../../libs`);
 const { ErrorHandler } = require(`../../utils`);
 const { postAssessment ,getAssessmentList, deleteAssessment } = require("../../libs/AssessmentService");

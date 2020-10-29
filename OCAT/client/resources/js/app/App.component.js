@@ -8,7 +8,7 @@ import Register from "../components/Users/Register"
 import NavBar from "../components/Dashboard/navbar";
 import { AssessmentsContextProvider } from "../components/shared/services/assessment.service";
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export function App() {
@@ -24,12 +24,12 @@ export function App() {
     setIsAuthenticated(boolean);
   };
 
-  //On page reload
+  //On page reload 
   useEffect(() => {
     isAuth();
   })
 
-  //Checks authentication on page refresh
+  //Checks authentication 
   async function isAuth(){
     try{
       //Checks if token is valid with backend
@@ -47,7 +47,6 @@ export function App() {
   }
 
   return (
-    
     <div>
       <NavBar isAuthenticated={isAuthenticated}/>
       <main className="container">

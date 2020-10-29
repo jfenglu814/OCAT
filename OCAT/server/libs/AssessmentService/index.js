@@ -29,9 +29,7 @@ async function getAssessmentList() {
 async function deleteAssessment(id) {
   try {
     const response = await axios.delete("http://localhost:3000/assessment/" + id);
-
     return response.data;
-  
   } catch (err) {
     console.log(err);
   }

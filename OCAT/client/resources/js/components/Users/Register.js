@@ -88,7 +88,7 @@ const Register = ({setAuth})=> {
           />
           {errors.password_repeat && <small className ="form-text text-danger">{errors.password_repeat.message}</small>}
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary m-2">
           Submit
         </button>
         <Link to="/login">Login</Link>

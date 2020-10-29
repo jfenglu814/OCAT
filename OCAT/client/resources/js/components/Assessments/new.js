@@ -1,28 +1,29 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Link, Redirect } from "react-router-dom";
 import { saveAssessment } from "../shared/services/assessment.service";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
-//React-hook-form
 function AssessmentNew() {
+  //react hook form
   const { register, handleSubmit, errors, control } = useForm({
     mode: 'onBlur',
   });
+
   const history = useHistory()
-  //const [selectedDate, setselectedDate] = useState();
+
   //handle submit data
   const onSubmit = (data) => {
     saveAssessment(data);
     toast.success("Form Submited");
-    //Go back to previous page
-    history.goBack();
+
+    //Go back to dashboard 
+    history.push('/');
   };
 
-  //todo: generate form dynamically from a question database.
+  //todo: Generate form dynamically from a question database.
   //todo: Map questions into component instead of hardcoding jsx
   return (
     <div>
